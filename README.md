@@ -1,0 +1,3 @@
+# Octopuss API
+
+### Endpoints
