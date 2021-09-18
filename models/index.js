@@ -8,8 +8,10 @@ const Attribute = new mongoose.Schema({
 
 const OctopussSchema = new mongoose.Schema({
   id: ObjectId,
+  dna: String,
   name: String,
   description: String,
+  date: Date,
   image: String,
   attributes: [Attribute]
 });
