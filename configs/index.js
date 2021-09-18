@@ -53,12 +53,11 @@ const HEADS = {
     { type: 'Bow', filename: '0.png' },
     { type: 'Top Bow', filename: '1.png' },
     { type: 'Black Horns', filename: '2.png' },
-    { type: 'Red Horns', filename: '3.png' },
-    { type: 'Red Plaid Bow', filename: '4.png' }
+    { type: 'Red Horns', filename: '3.png' }
   ],
   spicy: [
     { type: 'Yellow Flower Bow', filename: '0.png' },
-    { type: 'Zebra Horns', filename: '1.png' }
+    { type: 'Red Plaid Bow', filename: '1.png' }
   ]
 };
 
