@@ -228,10 +228,33 @@ const gimmie = async (req, res) => {
   console.log('###################\n');
 
   const { metadata, imagedata } = generateMetadata(req.body.name);
-  const image = await generateImage(imagedata, metadata.dna);
+  const image = await generateImageBase64(imagedata, metadata.dna);
 
-  return res.status(200).sendFile(path.resolve(`${config.baseImagePath}/${image}`));
+  // send base64 encoded image
+  return res.status(200).send(image);
+
+  // send the file
+  // const image = await generateImage(imagedata, metadata.dna);
+  // return res.status(200).sendFile(path.resolve(`${config.baseImagePath}/${image}`));
 }
+
+const generateImageBase64 = async (imagedata, dna) => {
+  ctx.clearRect(0, 0, config.width, config.height);
+
+  const body = await loadImage(`assets/bodies/${imagedata.body.rarity}/${imagedata.body.filename}`);
+  const eyes = await loadImage(`assets/eyes/${imagedata.eyes.rarity}/${imagedata.eyes.filename}`);
+  const mouth = await loadImage(`assets/mouths/${imagedata.mouth.rarity}/${imagedata.mouth.filename}`);
+  const head = await loadImage(`assets/heads/${imagedata.head.rarity}/${imagedata.head.filename}`);
+
+  const x = 0, y = 0;
+
+  ctx.drawImage(body, x, y, config.width, config.height);
+  ctx.drawImage(eyes, x, y, config.width, config.height);
+  ctx.drawImage(mouth, x, y, config.width, config.height);
+  ctx.drawImage(head, x, y, config.width, config.height);
+
+  return canvas.toBuffer('image/png').toString('base64');
+};
 
 module.exports = {
   getOctopuss,
